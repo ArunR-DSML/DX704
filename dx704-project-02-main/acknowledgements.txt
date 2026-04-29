@@ -1,0 +1,57 @@
+------------ ACKNOWLEDGMENTS / WORKS CITED ---------------------
+
+Facebook Prophet for generating forecasted prices for 2024 and 2025
+https://facebook.github.io/prophet/docs/quick_start.html
+
+-----------------------------------------------------------------------------------
+https://github.com/bu-cds-omds/dx704-examples
+
+-----------------------------------------------------------------------------------
+
+Routine conversations and laments with fellow students, in particular:  Mr. James Kantor
+
+-----------------------------------------------------------------------------------
+
+Microsoft CoPilot
+
+-----------------------------------------------------------------------------------
+
+Google Gemini 2.5 Flash conversation (11-Sept-2025): 
+*Can you suggest an alternative approach to Part 4 ?*
+
+**
+    The brute-force approach you've used for Part 4 is perfectly valid and efficient for this problem. Given that you are analyzing only 12 months of data, the total number of possible buy/sell pairs is quite small (12
+    choose2=66), so a nested loop is a great way to guarantee you find the optimal solution.
+
+    A "simpler" approach of just finding the minimum buy price and maximum sell price wouldn't work here because the monthly storage cost means that a longer holding period can erode profits. For example, the lowest buy price might be in July, and the highest sell price in December, but the five months of storage costs might make a different pair of months more profitable. Any correct alternative would still need to evaluate each pair, as you have done.
+
+    One way to make the code slightly more compact, while still evaluating every pair, would be to use a Pandas-native method to create all the buy/sell pairs before iterating. You can achieve this by creating a Cartesian product of the forecast DataFrame with itself.
+
+    Here is an example of what that alternative code might look like:
+    # Create a Cartesian product of the DataFrame with itself
+    # to get all possible buy_month and sell_month combinations.
+    df_pairs = forecast_2025_df.assign(key=1).merge(forecast_2025_df.assign(key=1), on='key', suffixes=('_buy', '_sell'))
+    df_pairs = df_pairs.drop('key', axis=1)
+
+    # Filter to keep only valid pairs (sell_month after buy_month)
+    df_pairs = df_pairs[df_pairs['month_sell'] > df_pairs['month_buy']].copy()
+
+    # Calculate months stored
+    df_pairs['months_stored'] = ((df_pairs['month_sell'] - df_pairs['month_buy']).dt.days // 30).astype(int)
+
+    # Calculate costs and profits
+    df_pairs['total_unit_cost'] = df_pairs['price_buy'] + cost_freezing + (df_pairs['months_stored'] * cost_storage_monthly)
+    df_pairs['net_sell_price'] = df_pairs['price_sell'] * (1 - discount)
+    df_pairs['profit_per_unit'] = df_pairs['net_sell_price'] - df_pairs['total_unit_cost']
+
+    # Calculate total profit
+    df_pairs['pints_purchased'] = investment / df_pairs['total_unit_cost']
+    df_pairs['expected_profit'] = df_pairs['pints_purchased'] * df_pairs['profit_per_unit']
+    df_pairs['pints_purchased'] = df_pairs['pints_purchased'].astype(int)
+
+    # Select and rename columns for the final output
+    results_df = df_pairs[['month_buy', 'month_sell', 'pints_purchased', 'expected_profit']].rename(columns={
+        'month_buy': 'buy_month',
+        'month_sell': 'sell_month'
+    })
+**

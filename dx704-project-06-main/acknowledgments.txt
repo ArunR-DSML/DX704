@@ -1,0 +1,135 @@
+------------ ACKNOWLEDGMENTS / WORKS CITED ---------------------
+
+https://github.com/bu-cds-omds/dx704-examples
+
+https://github.com/bu-cds-omds/dx704-examples/blob/main/week06/video_implementing_value_iteration.ipynb
+https://github.com/bu-cds-omds/dx704-examples/blob/main/week06/video_implementing_policy_iteration.ipynb
+https://github.com/bu-cds-omds/dx704-examples/blob/main/week06/video_implementing_iterative_policy_evaluation.ipynb
+
+https://www.datacamp.com/cheat-sheet/reshaping-data-with-pandas-in-python
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Routine conversations and laments with fellow students, in particular: 
+ Mr. James Kantor and Chris Fornesa
+
+--------------------------------------------------------------------------------------------------------------------------
+
+######## LLMs #########
+
+Google Gemini 2.5 Pro ------------------------------------------------
+
+Conversations  
+
+Why is my code failing this autograde test ? 
+https://g.co/gemini/share/f251ca920f8dhttps://g.co/gemini/share/7ae3c3ced092
+
+
+M365 Copilot ---------------------------------------------------------
+
+**Prompt [write docstrings for these functions:
+https://m365.cloud.microsoft/chat/entity1-d870f6cd-4aa5-4d42-9626-ab690c041429/eyJpZCI6IlZYTmxjbFl4ZkdoMGRIQnpPaTh2YzNWaWMzUnlZWFJsTFdsdWRDNXZabVpwWTJVdVkyOXRMM3hQU1VRNk9UWmhaamMxWlRJdE5XTm1aaTAwTXpjMUxXSXlPR0V0Tm1JelptRTNNMkppT1RBMGZETTNNbU0yT0RsakxUTTBPV010TkRGa015MDVNR0l6TFRBMVpXSXhNVFZoT0RjME5Yd3lNREkxTFRFd0xURXhWREl6T2pBd09qRXhMamcxT1RZNE9UbGEiLCJzY2VuYXJpbyI6InNoYXJlTGlua1ZpYVJpY2hDb3B5IiwicHJvcGVydGllcyI6eyJwcm9tcHRTb3VyY2UiOiJ1c2VyIiwiY2xpY2tUaW1lc3RhbXAiOiIyMDI1LTEwLTExVDIzOjAwOjEyLjA2OVoifSwiY2hhdFR5cGUiOiJ3ZWIiLCJ2ZXJzaW9uIjoxLjF9
+
+# copied... | Try in Copilot Chat](https://m365.cloud.microsoft/chat/entity1-d870f6cd-4aa5-4d42-9626-ab690c041429/eyJpZCI6IlZYTmxjbFl4ZkdoMGRIQnpPaTh2YzNWaWMzUnlZWFJsTFdsdWRDNXZabVpwWTJVdVkyOXRMM3hQU1VRNk9UWmhaamMxWlRJdE5XTm1aaTAwTXpjMUxXSXlPR0V0Tm1JelptRTNNMkppT1RBMGZETTNNbU0yT0RsakxUTTBPV010TkRGa015MDVNR0l6TFRBMVpXSXhNVFZoT0RjME5Yd3lNREkxTFRFd0xURXhWREl6T2pBd09qRXhMamcxT1RZNE9UbGEiLCJzY2VuYXJpbyI6InNoYXJlTGlua1ZpYVJpY2hDb3B5IiwicHJvcGVydGllcyI6eyJwcm9tcHRTb3VyY2UiOiJ1c2VyIiwiY2xpY2tUaW1lc3RhbXAiOiIyMDI1LTEwLTExVDIzOjAwOjEyLjA2OVoifSwiY2hhdFR5cGUiOiJ3ZWIiLCJ2ZXJzaW9uIjoxLjF9)**
+write docstrings for these functions:
+
+def compute_qT_once(R, P, gamma, v):
+    return R + gamma * P @ v
+
+def iterate_values_once(R, P, gamma, v):
+    return np.max(compute_qT_once(R, P, gamma, v), axis=0)
+
+def value_iteration(R, P, gamma, max_iterations=100, tolerance=0.001):
+    # initial approximation v_0
+    v_old = np.zeros(R.shape[-1])
+
+    for i in range(max_iterations):
+        # compute v_{i+1}
+        v_new = iterate_values_once(R, P, gamma, v_old)
+
+        # check if values did not change much
+        if np.max(np.abs(v_new - v_old)) < tolerance:
+            return v_new
+
+        v_old = v_new
+
+    # return v_{max_iterations}
+    return v_old
+
+**Response**
+Here are well-structured docstrings for the three functions you provided. These docstrings follow the PEP 257 conventions and clearly explain the purpose, parameters, and return values of each function:
+
+---
+
+```python
+def compute_qT_once(R, P, gamma, v):
+    """
+    Compute the Q-value matrix for a single iteration of value iteration.
+
+    Parameters:
+    R (np.ndarray): Reward matrix of shape (num_actions, num_states).
+    P (np.ndarray): Transition probability matrix of shape (num_actions, num_states, num_states),
+                    where P[a][s][s'] is the probability of transitioning from state s to s' under action a.
+    gamma (float): Discount factor, between 0 and 1.
+    v (np.ndarray): Current value function vector of shape (num_states,).
+
+    Returns:
+    np.ndarray: Q-value matrix of shape (num_actions, num_states), representing expected returns
+                for each action at each state.
+    """
+    return R + gamma * P @ v
+```
+
+---
+
+```python
+def iterate_values_once(R, P, gamma, v):
+    """
+    Perform one iteration of value update using the Bellman optimality equation.
+
+    Parameters:
+    R (np.ndarray): Reward matrix of shape (num_actions, num_states).
+    P (np.ndarray): Transition probability matrix of shape (num_actions, num_states, num_states).
+    gamma (float): Discount factor, between 0 and 1.
+    v (np.ndarray): Current value function vector of shape (num_states,).
+
+    Returns:
+    np.ndarray: Updated value function vector of shape (num_states,), where each value is the
+                maximum expected return over all actions for that state.
+    """
+    return np.max(compute_qT_once(R, P, gamma, v), axis=0)
+```
+
+---
+
+```python
+def value_iteration(R, P, gamma, max_iterations=100, tolerance=0.001):
+    """
+    Perform value iteration to compute the optimal value function.
+
+    Parameters:
+    R (np.ndarray): Reward matrix of shape (num_actions, num_states).
+    P (np.ndarray): Transition probability matrix of shape (num_actions, num_states, num_states).
+    gamma (float): Discount factor, between 0 and 1.
+    max_iterations (int, optional): Maximum number of iterations to perform. Default is 100.
+    tolerance (float, optional): Convergence threshold. Iteration stops when the maximum change
+                                 in value function is less than this value. Default is 0.001.
+
+    Returns:
+    np.ndarray: Optimal value function vector of shape (num_states,).
+    """
+    v_old = np.zeros(R.shape[-1])
+
+    for i in range(max_iterations):
+        v_new = iterate_values_once(R, P, gamma, v_old)
+
+        if np.max(np.abs(v_new - v_old)) < tolerance:
+            return v_new
+
+        v_old = v_new
+
+    return v_old
+```
+
+---
+

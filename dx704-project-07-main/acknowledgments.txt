@@ -1,0 +1,30 @@
+------------ ACKNOWLEDGMENTS / WORKS CITED ---------------------
+
+https://github.com/bu-cds-omds/dx704-examples
+
+https://www.datacamp.com/cheat-sheet/reshaping-data-with-pandas-in-python
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Routine conversations and laments with fellow students, in particular: 
+ Mr. James Kantor and Chris Fornesa
+--------------------------------------------------------------------------------------------------------------------------
+
+######## LLMs #########
+
+Google Gemini 2.5 Pro ------------------------------------------------
+
+Conversations  
+
+What's a linear quadratic regulator and when would we use it ? 
+https://g.co/gemini/share/00bd802ee074 
+
+
+
+
+M365 Copilot ---------------------------------------------------------
+
+
+
+---
+

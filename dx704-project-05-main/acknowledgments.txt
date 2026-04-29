@@ -1,0 +1,36 @@
+------------ ACKNOWLEDGMENTS / WORKS CITED ---------------------
+
+https://github.com/bu-cds-omds/dx704-examples
+
+https://github.com/bu-cds-omds/dx704-examples/blob/main/week03/video_visualizing_the_upper_confidence_bound_algorithm.ipynb
+
+https://www.datacamp.com/cheat-sheet/reshaping-data-with-pandas-in-python
+
+https://en.wikipedia.org/wiki/Minimax
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Routine conversations and laments with fellow students, in particular:  Mr. James Kantor
+
+--------------------------------------------------------------------------------------------------------------------------
+
+######## LLMs #########
+
+Google Gemini 2.5 Pro ------------------------------------------------
+
+Conversations  
+
+Implementing the Minimax algorithm using recursion, you need to define a function that evaluates game states by exploring all possible moves up to a certain depth. The algorithm works on a game tree where each node represents a game state.
+https://g.co/gemini/share/f251ca920f8d
+
+What's dynamic programming ? 
+https://g.co/gemini/share/da845e2abc84
+
+
+
+
+
+M365 Copilot ---------------------------------------------------------
+

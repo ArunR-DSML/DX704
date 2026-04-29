@@ -1,0 +1,68 @@
+------------ ACKNOWLEDGMENTS / WORKS CITED ---------------------
+Realistically, hard to populate a file like this. The IDE practically writes the damn code for us, and I can't even figure out how to switch it off.
+Seriously, it is't clear in VSCode how to configure 'intellisense only'.  I guess that means `Github Copilot` has played a major role. 
+
+Could I have figured this stuff out on my own ?  Yes, eventually.  Could I do this on a blank piece of paper w/o copious google searches? No.
+
+I did this without reading the content in Blackboard so there isn't much of Prof Considine's sample code. 
+A proper approach would have been to set the notebook up to solve the problem using 
+different approaches (UCB1, Thompson sampling, ...)
+-----------------------------------------------------------------------------------
+https://github.com/bu-cds-omds/dx704-examples
+
+https://github.com/bu-cds-omds/dx704-examples/blob/main/week03/video_visualizing_the_upper_confidence_bound_algorithm.ipynb
+
+-----------------------------------------------------------------------------------
+
+Routine conversations and laments with fellow students, in particular:  Mr. James Kantor
+
+-----------------------------------------------------------------------------------
+
+Microsoft CoPilot
+
+copilot write a docstring for this function please:
+
+def ucb1_select_arm(arm_rewards, arm_pull_counts, total_pulls):
+    # returns arm with highest UCB value
+    UCB_values = []
+    
+    for arm in range(len(arm_rewards)):
+        if arm_pull_counts[arm] == 0:
+            UCB_values.append(float('inf')) # Force exploration
+        else:
+            avg_reward  = arm_rewards[arm] / arm_pull_counts[arm]
+            UCB         = avg_reward + np.sqrt(2 * np.log(total_pulls) / arm_pull_counts[arm])
+            UCB_values.append(UCB)
+    return np.argmax(UCB_values)
+
+Here’s a clear and informative docstring for your `ucb1_select_arm` function:
+
+```python
+def ucb1_select_arm(arm_rewards, arm_pull_counts, total_pulls):
+    """
+    Selects the arm with the highest Upper Confidence Bound (UCB1) value.
+
+    This function implements the UCB1 algorithm for multi-armed bandit problems.
+    It calculates the UCB value for each arm based on its average reward and
+    the number of times it has been pulled, encouraging exploration of less
+    frequently pulled arms and exploitation of arms with higher average rewards.
+
+    Parameters:
+    ----------
+    arm_rewards : list of float
+        Cumulative rewards obtained from each arm.
+    arm_pull_counts : list of int
+        Number of times each arm has been pulled.
+    total_pulls : int
+        Total number of arm pulls across all arms.
+
+    Returns:
+    -------
+    int
+        Index of the arm with the highest UCB1 value.
+    """
+```
+
+Let me know if you'd like this adapted for a specific code style (e.g., NumPy/Sphinx/Google style) or if you're integrating it into a larger project.
+-----------------------------------------------------------------------------------
+

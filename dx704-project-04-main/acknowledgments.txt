@@ -1,0 +1,31 @@
+------------ ACKNOWLEDGMENTS / WORKS CITED ---------------------
+
+https://github.com/bu-cds-omds/dx704-examples
+
+https://github.com/bu-cds-omds/dx704-examples/blob/main/week03/video_visualizing_the_upper_confidence_bound_algorithm.ipynb
+
+https://www.datacamp.com/cheat-sheet/reshaping-data-with-pandas-in-python
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Routine conversations and laments with fellow students, in particular:  Mr. James Kantor
+
+--------------------------------------------------------------------------------------------------------------------------
+
+######## LLMs #########
+
+Google Gemini 2.5 Pro ------------------------------------------------
+
+Conversations  
+
+LinUCB Code: Bounds and Recommendations
+https://g.co/gemini/share/6ca302314f6c
+
+Recipe Slugs: URL Identifiers Explained
+https://g.co/gemini/share/6fb2055f0769
+
+
+
+M365 Copilot ---------------------------------------------------------
+
