@@ -1,0 +1,11 @@
+name: Mirror to Personal Account
+on: [push]
+jobs:
+  git-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wearerequired/git-mirror-action@v1
+        env:
+          SOURCE_REPO: "https://github.com/ArunR-DSML/DX704_AI_in_the_Field.git"
+          DESTINATION_REPO: "https://github.com/AnuBegins/DX704_AI_in_the_Field.git"
+          SSH_PRIVATE_KEY: ${{ secrets.PERSONAL_TOKEN }}
