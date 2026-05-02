@@ -5,6 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: wearerequired/git-mirror-action@v1
-        env:
-          SOURCE_REPO: "https://github.com/ArunR-DSML/DX704_AI_in_the_Field.git"
-          DESTINATION_REPO: "https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/AnuBegins/DX704_AI_in_the_Field.git"
+        with:
+          source-repo: "https://github.com/ArunR-DSML/DX704_AI_in_the_Field.git"
+          destination-repo: "https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/AnuBegins/DX704_AI_in_the_Field.git"
